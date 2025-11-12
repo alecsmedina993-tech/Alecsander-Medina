@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alecs Medina | Professional Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.15);
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --card-bg: #111827;
+      --border-subtle: rgba(156, 163, 175, 0.3);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2,6,23,0.98), rgba(2,6,23,0.88), transparent);
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto 8px;
+      padding: 10px 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 14px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+      opacity: 0.85;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: rgba(156, 163, 175, 0.5);
+      opacity: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+    }
+
+    .hero-left h1 {
+      font-size: clamp(32px, 5vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .hero-left h1 span {
+      background: linear-gradient(120deg, #a855f7, #4f46e5, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(156, 163, 175, 0.5);
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.3));
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      padding: 9px 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #4f46e5, #1d4ed8);
+      border-color: rgba(129, 140, 248, 0.7);
+      color: #eef2ff;
+      box-shadow: 0 16px 35px rgba(79, 70, 229, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 45px rgba(79, 70, 229, 0.55);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.75);
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-contact {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .hero-contact a {
+      color: #e5e7eb;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(229, 231, 235, 0.5);
+    }
+
+    .hero-right-card {
+      background: radial-gradient(circle at top, #111827, #020617);
+      border-radius: 26px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56,189,248,0.14), transparent 58%),
+        radial-gradient(circle at 100% 0, rgba(129,140,248,0.15), transparent 55%),
+        radial-gradient(circle at 50% 120%, rgba(16,185,129,0.22), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-right-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-strip {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .badge-soft {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .card-main-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-main-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .card-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: #a78bfa;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--text-muted);
+    }
+
+    .sections {
+      margin-top: 40px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .section {
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.85));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31,41,55,0.9);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+      padding: 18px 18px 16px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .section p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .two-col {
+      display: grid;
+      gap: 12px;
+    }
+
+    @media (min-width: 720px) {
+      .two-col {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    .list-titled {
+      margin-top: 6px;
+    }
+
+    .list-titled h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .list-titled ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .list-titled li::before {
+      content: "–";
+      margin-right: 6px;
+      color: #a5b4fc;
+    }
+
+    .experience-item {
+      margin-bottom: 10px;
+    }
+
+    .experience-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .experience-role {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .experience-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .experience-points {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .experience-points li::before {
+      content: "•";
+      margin-right: 6px;
+      color: #22c55e;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    footer a {
+      color: #e5e7eb;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(229, 231, 235, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-title">ALECS MEDINA</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>
+          <span>Alecsander A. Medina</span><br />
+          Motivated, Coachable, Team-Oriented
+        </h1>
+        <p class="hero-tagline">
+          Reliable, hardworking professional with hands-on experience, strong customer service skills,
+          and a competitive mindset. Open to roles in retail sales, showroom coordination, and junior trading.
+        </p>
+
+        <div class="hero-pills">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Strong work ethic &amp; discipline
+          </div>
+          <div class="pill">Customer-focused</div>
+          <div class="pill">Quick learner</div>
+          <div class="pill">Team player</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Contact Me
+            <span>↗</span>
+          </a>
+          <a href="#experience" class="btn-ghost">
+            View Experience
+          </a>
+        </div>
+
+        <p class="hero-contact">
+          Phone: <a href="tel:+18014364655">801-436-4655</a> ·
+          Email: <a href="mailto:alecsmedina993@gmail.com">alecsmedina993@gmail.com</a>
+        </p>
+      </div>
+
+      <aside class="hero-right hero-right-card">
+        <div class="hero-right-inner">
+          <div class="badge-strip">
+            <span class="badge-soft">
+              <span class="badge-dot"></span>
+              Actively seeking opportunities
+            </span>
+            <span>Open to relocation</span>
+          </div>
+
+          <div class="card-main-title">What I bring to a team</div>
+          <div class="card-main-subtitle">
+            A mix of discipline, competitiveness, and real-world problem-solving.
+          </div>
+
+          <ul class="card-list">
+            <li>Calm under pressure and focused on results</li>
+            <li>Comfortable following systems and learning new processes fast</li>
+            <li>Enjoy working with people and helping them find what they need</li>
+          </ul>
+
+          <div class="chip-row">
+            <span class="chip">Retail &amp; showroom experience</span>
+            <span class="chip">Operations &amp; organization</span>
+            <span class="chip">Growth mindset</span>
+            <span class="chip">Coachable attitude</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <span class="section-tag">Overview</span>
+      </div>
+      <div class="two-col">
+        <div>
+          <p>
+            I’m a motivated, hands-on worker who takes pride in being reliable, punctual, and easy to work with.
+            I learn quickly, ask good questions, and like being in environments where things are moving fast and
+            the team is focused on getting results.
+          </p>
+          <p>
+            My background includes customer-facing roles, physical/technical work, and collaborating closely
+            with teammates to finish projects on time and at a high standard. I’m comfortable balancing
+            quality, speed, and clear communication.
+          </p>
+        </div>
+        <div>
+          <div class="list-titled">
+            <h4>What I’m looking for</h4>
+            <ul>
+              <li>Retail or showroom positions where I can work directly with customers</li>
+              <li>Opportunities to grow into more responsibility or leadership over time</li>
+              <li>Teams that value work ethic, honesty, and constant improvement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Skills &amp; Strengths</h2>
+        <span class="section-tag">Core Value</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="list-titled">
+            <h4>People &amp; Customer Skills</h4>
+            <ul>
+              <li>Friendly, patient, and professional with customers</li>
+              <li>Helps people find the right products for their needs</li>
+              <li>Clear communication with teammates and supervisors</li>
+              <li>Comfortable working in busy, high-pressure environments</li>
+            </ul>
+          </div>
+
+          <div class="list-titled">
+            <h4>Work Ethic &amp; Mindset</h4>
+            <ul>
+              <li>Shows up on time and follows through on responsibilities</li>
+              <li>Coachable and open to feedback</li>
+              <li>Competitive mindset and high standards for performance</li>
+              <li>Always looking to learn and improve</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="list-titled">
+            <h4>Operational Skills</h4>
+            <ul>
+              <li>Receiving, stocking, and organizing inventory</li>
+              <li>Keeping displays and work areas clean and presentable</li>
+              <li>Basic record-keeping and following store procedures</li>
+              <li>Comfortable learning new systems, tools, and software</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Experience Snapshot</h2>
+        <span class="section-tag">Background</span>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-role">Retail &amp; Customer-Facing Roles</div>
+        <div class="experience-meta">Sales associate / showroom-style environments</div>
+        <ul class="experience-points">
+          <li>Helped customers find products, answered questions, and made sure they had what they needed.</li>
+          <li>Maintained clean, organized displays and assisted with stocking and pricing items.</li>
+          <li>Worked as part of a team to keep things running smoothly during busy times.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-role">Hands-On / Technical Work</div>
+        <div class="experience-meta">Field &amp; project-based environments</div>
+        <ul class="experience-points">
+          <li>Followed detailed instructions and safety procedures on active job sites.</li>
+          <li>Handled tools, materials, and equipment with care and attention to detail.</li>
+          <li>Coordinated with others to hit deadlines and keep work moving in the right order.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-role">Growth &amp; Learning</div>
+        <div class="experience-meta">Self-improvement &amp; professional development</div>
+        <ul class="experience-points">
+          <li>Actively learning about business, trading, and financial markets.</li>
+          <li>Regularly studies new skills and concepts to stay sharp and open up new career paths.</li>
+          <li>Looks for feedback and opportunities to take on more responsibility over time.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <span class="section-tag">Let’s Talk</span>
+      </div>
+      <p>
+        I’m currently open to opportunities in retail, showroom coordination, and junior trading roles.
+        The best way to reach me is by phone, text, or email.
+      </p>
+      <p><strong>Phone:</strong> <a href="tel:+18014364655">801-436-4655</a></p>
+      <p><strong>Email:</strong> <a href="mailto:alecsmedina993@gmail.com">alecsmedina993@gmail.com</a></p>
+      <p>
+        I’d be happy to share my resume, talk more about my background, and learn about how I can help your team.
+      </p>
+    </section>
+
+    <footer>
+      &copy; <span id="year"></span> Alecs Medina · Built with HTML &amp; CSS
+    </footer>
+  </main>
+
+  <script>
+    // Set current year in footer automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
